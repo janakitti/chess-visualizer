@@ -1,6 +1,8 @@
 import React from "react"
 import './App.css';
 
+import Board from './Board';
+
 class App extends React.Component {
   constructor() {
     super()
@@ -13,6 +15,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Chess Visualizer</h1>
+        <Board />
       </div>
     )
   }
