@@ -18,19 +18,9 @@ class Board extends React.Component {
     }
 
     analyze(pos, piece, grid) {
+        let vals = []
         if (piece.type === "n") {
-            // let vals = [
-            //     [pos-17, 1],
-            //     [pos-10, 1],
-            //     [pos+6, 1],
-            //     [pos+15, 1],
-            //     [pos-15, 1],
-            //     [pos-6, 1],
-            //     [pos+10, 1],
-            //     [pos+17, 1]
-            // ].filter(v => v[0] >= 0 && v[0] <= 63);
-
-            let vals = [
+            vals = [
                 {x:-1, y:2, v:1},
                 {x:1, y:2, v:1},
                 {x:-1, y:-2, v:1},
@@ -39,24 +29,40 @@ class Board extends React.Component {
                 {x:2, y:1, v:1},
                 {x:-2, y:-1, v:1},
                 {x:2, y:-1, v:1}
-            ].filter(val => 
-                ((pos % 8) + val.x >= 0 && (pos % 8) + val.x <= 7) &&
-                (Math.floor(pos / 8) + val.y >= 0 && Math.floor(pos / 8) + val.y <= 7)
-            )
-
-
-            vals.forEach(v => {
-                grid[pos + v.x + 8*v.y].val = grid[pos + v.x + 8*v.y].val + v.v
-            })
-            return grid
-        } else {
-            return grid
+            ]
+        } else if (piece.type == "r") {
+            // for(let i=-7; i<0; i++) {
+            //     vals.push({x:i, y:0, v:1})
+            // }
+            // for(let i=1; i<=7; i++) {
+            //     vals.push({x:i, y:0, v:1})
+            // }
+            // for(let i=-7; i<0; i++) {
+            //     vals.push({x:0, y:i, v:1})
+            // }
+            for(let i=1; i<=7; i++) {
+                vals.push({x:0, y:i, v:"a"})
+            }
+            grid[8].setVal(1)
         }
+        
+        vals = vals.filter(val => 
+            ((pos % 8) + val.x >= 0 && (pos % 8) + val.x <= 7) &&
+            (Math.floor(pos / 8) + val.y >= 0 && Math.floor(pos / 8) + val.y <= 7)
+        )
+        // vals.forEach(v => {
+        //     grid[pos + v.x + 8*v.y].setVal(v.v)
+        //     console.log("board: ", grid[pos + v.x + 8*v.y].val)
+        //     console.log(grid[pos + v.x + 8*v.y])
+        // })
+
+        
+        return grid
     }
 
     refreshBoard() {
         this.setState(prevState => {
-            let newGrid = prevState.grid;
+            let newGrid = prevState.grid.map(a => Object.assign({}, a));
             for(let i = 0; i < 8; i++) {
                 for(let j = 0; j < 8; j++) {
                     newGrid = this.analyze(8*i + j, prevState.grid[8*i + j], newGrid);

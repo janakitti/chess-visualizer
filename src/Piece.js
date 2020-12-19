@@ -5,6 +5,9 @@ class Piece {
         this.val = val
     }
 
+    setVal(v) {
+        this.val = this.val + v
+    }
 
 }
 

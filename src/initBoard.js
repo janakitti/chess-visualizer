@@ -10,14 +10,14 @@ function initBoard() {
         initGrid[i] = new Piece("e", "");
     }
     initGrid[0] = new Piece("r", "b");
-    initGrid[7] = new Piece("r", "b");
-    initGrid[56] = new Piece("r", "w");
-    initGrid[63] = new Piece("r", "w");
+    initGrid[7] = new Piece("r1", "b");
+    initGrid[56] = new Piece("r1", "w");
+    initGrid[63] = new Piece("r1", "w");
   
-    initGrid[1] = new Piece("n", "b");
-    initGrid[6] = new Piece("n", "b");
-    initGrid[57] = new Piece("n", "w");
-    initGrid[62] = new Piece("n", "w");
+    initGrid[1] = new Piece("n1", "b");
+    initGrid[6] = new Piece("n1", "b");
+    initGrid[57] = new Piece("n1", "w");
+    initGrid[62] = new Piece("n1", "w");
   
     initGrid[2] = new Piece("b", "b");
     initGrid[5] = new Piece("b", "b");
