@@ -1,34 +1,34 @@
-import Piece from "./Piece"
+
 
 function initBoard() {
-    let initGrid = Array(64).fill(new Piece("temp", ""));
+    let initGrid = Array(64).fill({t: "e", player: "", val: 0});
     for(let i = 8; i < 16; i++){
-        initGrid[i] = new Piece("p", "b");
-        initGrid[i+40] = new Piece("p", "w");
+        initGrid[i] = {type: "p", player: "b", val: 0};
+        initGrid[i+40] = {type: "p", player: "w", val: 0};
     }
     for(let i = 16; i < 48; i++){
-        initGrid[i] = new Piece("e", "");
+        initGrid[i] = {type: "e", player: "", val: 0};
     }
-    initGrid[0] = new Piece("r", "b");
-    initGrid[7] = new Piece("r1", "b");
-    initGrid[56] = new Piece("r1", "w");
-    initGrid[63] = new Piece("r1", "w");
+    initGrid[0] = {type: "r", player: "b", val: 0};
+    initGrid[7] = {type: "r", player: "b", val: 0};
+    initGrid[56] = {type: "r", player: "w", val: 0};
+    initGrid[63] = {type: "r", player: "w", val: 0};
   
-    initGrid[1] = new Piece("n1", "b");
-    initGrid[6] = new Piece("n1", "b");
-    initGrid[57] = new Piece("n1", "w");
-    initGrid[62] = new Piece("n1", "w");
+    initGrid[1] = {type: "n", player: "b", val: 0};
+    initGrid[6] = {type: "n", player: "b", val: 0};
+    initGrid[57] = {type: "n", player: "w", val: 0};
+    initGrid[62] = {type: "n", player: "w", val: 0};
   
-    initGrid[2] = new Piece("b", "b");
-    initGrid[5] = new Piece("b", "b");
-    initGrid[58] = new Piece("b", "w");
-    initGrid[61] = new Piece("b", "w");
+    initGrid[2] = {type: "b", player: "b", val: 0};
+    initGrid[5] = {type: "b", player: "b", val: 0};
+    initGrid[58] = {type: "b", player: "w", val: 0};
+    initGrid[61] = {type: "b", player: "w", val: 0};
   
-    initGrid[3] = new Piece("q", "b");
-    initGrid[4] = new Piece("k", "b");
+    initGrid[3] = {type: "q", player: "b", val: 0};
+    initGrid[4] = {type: "k", player: "b", val: 0};
   
-    initGrid[59] = new Piece("q", "w");
-    initGrid[60] = new Piece("k", "w");
+    initGrid[59] = {type: "q", player: "w", val: 0};
+    initGrid[60] = {type: "k", player: "w", val: 0};
     return initGrid
 }
 
