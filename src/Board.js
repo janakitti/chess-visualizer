@@ -19,18 +19,34 @@ class Board extends React.Component {
 
     analyze(pos, piece, grid) {
         if (piece.type === "n") {
+            // let vals = [
+            //     [pos-17, 1],
+            //     [pos-10, 1],
+            //     [pos+6, 1],
+            //     [pos+15, 1],
+            //     [pos-15, 1],
+            //     [pos-6, 1],
+            //     [pos+10, 1],
+            //     [pos+17, 1]
+            // ].filter(v => v[0] >= 0 && v[0] <= 63);
+
             let vals = [
-                [pos-17, 1],
-                [pos-10, 1],
-                [pos+6, 1],
-                [pos+15, 1],
-                [pos-15, 1],
-                [pos-6, 1],
-                [pos+10, 1],
-                [pos+17, 1]
-            ].filter(v => v[0] >= 0 && v[0] <= 63);
+                {x:-1, y:2, v:1},
+                {x:1, y:2, v:1},
+                {x:-1, y:-2, v:1},
+                {x:1, y:-2, v:1},
+                {x:-2, y:1, v:1},
+                {x:2, y:1, v:1},
+                {x:-2, y:-1, v:1},
+                {x:2, y:-1, v:1}
+            ].filter(val => 
+                ((pos % 8) + val.x >= 0 && (pos % 8) + val.x <= 7) &&
+                (Math.floor(pos / 8) + val.y >= 0 && Math.floor(pos / 8) + val.y <= 7)
+            )
+
+
             vals.forEach(v => {
-                grid[v[0]].val = grid[v[0]].val + v[1]
+                grid[pos + v.x + 8*v.y].val = grid[pos + v.x + 8*v.y].val + v.v
             })
             return grid
         } else {
