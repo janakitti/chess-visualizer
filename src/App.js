@@ -14,7 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Chess Visualizer</h1>
+        <h1>Visualizer</h1>
         <Board />
       </div>
     )
