@@ -30,8 +30,8 @@ function initBoard() {
     initGrid[59] = {type: "q", player: "w", val: 0};
     initGrid[60] = {type: "k", player: "w", val: 0};
 
-    initGrid[19] = {type: "p", player: "b", val: 0};
-    initGrid[11] = {type: "e", player: "", val: 0};
+    // initGrid[19] = {type: "p", player: "b", val: 0};
+    // initGrid[11] = {type: "e", player: "", val: 0};
 
     return initGrid
 }
