@@ -13,14 +13,20 @@ function Square(props) {
             squareColor = ((index % 2 === 0 && (Math.floor(index / 8) % 2) === 0) ||
                 (index % 2 === 1 && ((Math.floor(index / 8) % 2) === 1))) ? {r:202, g:212, b:219, a:1} : {r:171, g:180, b:186, a:1}
         }
-        console.log(squareColor.a)
         return "rgba(" + squareColor.r + ", " + squareColor.g + ", " + squareColor.b + ", " + squareColor.a + ")"
     }
+
+    function onDragOver(event, index) {
+        event.preventDefault();
+        console.log("OVER:" + index)
+    }
+
     return (
-        <button className="square"
-            style={{backgroundColor: generateShade(props.index)}}
-        >
-            {props.piece.type}
+        <button className="square" onDragOver={(e) => onDragOver(e, props.index)}
+            style={{backgroundColor: generateShade(props.index)}}>
+            <div draggable>
+                {props.piece.type}
+            </div>
         </button>
     )
 }
