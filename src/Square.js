@@ -27,7 +27,6 @@ function Square(props) {
 
     function onDrop(event, dest) {
         let index = event.dataTransfer.getData("id");
-
     }
 
     return (
