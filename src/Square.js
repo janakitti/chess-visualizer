@@ -16,15 +16,25 @@ function Square(props) {
         return "rgba(" + squareColor.r + ", " + squareColor.g + ", " + squareColor.b + ", " + squareColor.a + ")"
     }
 
+    function onDragStart(event, index) {
+        console.log("S:" + index)
+        event.dataTransfer.setData("id", index)
+    }
+
     function onDragOver(event, index) {
         event.preventDefault();
-        console.log("OVER:" + index)
+    }
+
+    function onDrop(event, dest) {
+        let index = event.dataTransfer.getData("id");
+        
     }
 
     return (
         <button className="square" onDragOver={(e) => onDragOver(e, props.index)}
+                onDrop={(e) => onDrop(e, "dest")}
             style={{backgroundColor: generateShade(props.index)}}>
-            <div draggable>
+            <div onDragStart={(e) => onDragStart(e, props.index)} draggable>
                 {props.piece.type}
             </div>
         </button>
