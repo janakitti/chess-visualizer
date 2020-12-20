@@ -3,8 +3,8 @@
 function initBoard() {
     let initGrid = Array(64).fill({t: "e", player: "", val: 0});
     for(let i = 8; i < 16; i++){
-        initGrid[i] = {type: "p", player: "", val: 0};
-        initGrid[i+40] = {type: "p", player: "", val: 0};
+        initGrid[i] = {type: "p", player: "b", val: 0};
+        initGrid[i+40] = {type: "p", player: "w", val: 0};
     }
     for(let i = 16; i < 48; i++){
         initGrid[i] = {type: "e", player: "", val: 0};

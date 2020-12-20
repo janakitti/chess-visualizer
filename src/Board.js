@@ -31,35 +31,59 @@ class Board extends React.Component {
                 {x:2, y:-1, v:1*valMult}
             ]]
         } else if (piece.type === "r") {
-            let path = []
-            for(let i=-1; i>=-7; i--) {
-                path.push({x:i, y:0, v:1*valMult})
-            }
-            vals.push(path);
-            path = [];
+            let paths = [[],[],[],[]]
             for(let i=1; i<=7; i++) {
-                path.push({x:i, y:0, v:1*valMult})
+                paths[0].push({x:0, y:-i, v:1*valMult})
+                paths[1].push({x:i, y:0, v:1*valMult})
+                paths[2].push({x:0, y:i, v:1*valMult})
+                paths[3].push({x:-i, y:0, v:1*valMult})
             }
-            vals.push(path);
-            path = [];
-            for(let i=-1; i>=-7; i--) {
-                path.push({x:0, y:i, v:1*valMult})
-            }
-            vals.push(path);
-            path = [];
+            vals = paths;
+        } else if (piece.type === "b") {
+            let paths = [[],[],[],[]]
             for(let i=1; i<=7; i++) {
-                path.push({x:0, y:i, v:1*valMult})
+                paths[0].push({x:-i, y:-i, v:1*valMult})
+                paths[1].push({x:i, y:-i, v:1*valMult})
+                paths[2].push({x:i, y:i, v:1*valMult})
+                paths[3].push({x:-i, y:i, v:1*valMult})
             }
-            vals.push(path);
+            vals = paths;
+        } else if (piece.type === "q") {
+            let paths = [[],[],[],[],[],[],[],[]]
+            for(let i=1; i<=7; i++) {
+                paths[0].push({x:0, y:-i, v:1*valMult})
+                paths[1].push({x:i, y:0, v:1*valMult})
+                paths[2].push({x:0, y:i, v:1*valMult})
+                paths[3].push({x:-i, y:0, v:1*valMult})
+                paths[4].push({x:-i, y:-i, v:1*valMult})
+                paths[5].push({x:i, y:-i, v:1*valMult})
+                paths[6].push({x:i, y:i, v:1*valMult})
+                paths[7].push({x:-i, y:i, v:1*valMult})
+            }
+            vals = paths;
+        } else if (piece.type === "k") {
+            vals = [
+                [{x:0, y:-1, v:1*valMult}],
+                [{x:1, y:-1, v:1*valMult}],
+                [{x:1, y:0, v:1*valMult}],
+                [{x:1, y:1, v:1*valMult}],
+                [{x:0, y:1, v:1*valMult}],
+                [{x:-1, y:1, v:1*valMult}],
+                [{x:-1, y:0, v:1*valMult}],
+                [{x:-1, y:-1, v:1*valMult}],
+            ]
+        } else if (piece.type === "p") {
+            vals = [
+                [{x:-1, y:-valMult, v:1*valMult}],
+                [{x:1, y:-valMult, v:1*valMult}],
+            ]
         }
-
-        console.log("VALS: ", vals);
+        
         vals = vals.map(path => {
             let withinBoard = path.filter(val =>
                 ((pos % 8) + val.x >= 0 && (pos % 8) + val.x <= 7) &&
                 (Math.floor(pos / 8) + val.y >= 0 && Math.floor(pos / 8) + val.y <= 7)
             )
-            console.log("WB: ", withinBoard);
             let legalMoves = withinBoard;
             for(let i = 0; i < withinBoard.length; i++) {
                 const curPos = pos + withinBoard[i].x + 8*withinBoard[i].y
@@ -71,12 +95,10 @@ class Board extends React.Component {
                     break;
                 }
             }
-            console.log("LM: ", legalMoves);
             return legalMoves
         })
 
         const flattenVals = vals.flat();
-        console.log("FLATTEN: ", flattenVals);
         flattenVals.forEach(v => {
             grid[pos + v.x + 8*v.y].val = grid[pos + v.x + 8*v.y].val + (v.v)
         })
