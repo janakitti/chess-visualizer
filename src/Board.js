@@ -11,10 +11,29 @@ class Board extends React.Component {
             grid: initBoard()
         }
         this.refreshBoard = this.refreshBoard.bind(this)
+        this.movePieceHandler = this.movePieceHandler.bind(this)
+    }
+
+    componentDidMount() {
+        this.refreshBoard()
+    }
+
+    movePieceHandler(srcPos, destPos) {
+        if(this.getMoves(parseInt(srcPos)).includes(destPos)) {
+            this.setState(prevState => {
+                let newGrid = JSON.parse(JSON.stringify(prevState.grid));
+                newGrid[destPos] = JSON.parse(JSON.stringify(newGrid[srcPos]));
+                console.log(`D: ${destPos} becomes ${newGrid[srcPos].type}`)
+                newGrid[srcPos] = {type: "e", player: "", val: 0};
+
+                return {grid: newGrid};
+            })
+        }
+        this.refreshBoard()
     }
 
     renderSquare(i) {
-        return <Square key={i} index={i} piece={this.state.grid[i]} moves={this.getMoves(i)}/>
+        return <Square key={i} index={i} piece={this.state.grid[i]} movePieceHandler={this.movePieceHandler} />
     }
 
     getPaths(piece, attackPath=true) {
@@ -98,7 +117,7 @@ class Board extends React.Component {
         )
         let legalMoves = withinBoard;
         for(let i = 0; i < withinBoard.length; i++) {
-            const curPos = pos + withinBoard[i].x + 8*withinBoard[i].y
+            const curPos = parseInt(pos) + parseInt(withinBoard[i].x) + 8*parseInt(withinBoard[i].y)
             if(grid[curPos].player === grid[pos].player) {
                 legalMoves = withinBoard.slice(0, i);
                 break;
@@ -138,10 +157,14 @@ class Board extends React.Component {
             let newGrid = JSON.parse(JSON.stringify(prevState.grid));
             for(let i = 0; i < 8; i++) {
                 for(let j = 0; j < 8; j++) {
+                    newGrid[i + 8*j].val = 0;
+                }
+            }
+            for(let i = 0; i < 8; i++) {
+                for(let j = 0; j < 8; j++) {
                     newGrid = this.analyze(8*i + j, newGrid[8*i + j], newGrid);
                 }
             }
-            console.log(newGrid)
             return {grid: newGrid}
         })
     }

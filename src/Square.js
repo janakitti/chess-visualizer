@@ -25,8 +25,9 @@ function Square(props) {
         event.preventDefault();
     }
 
-    function onDrop(event, dest) {
-        let index = event.dataTransfer.getData("id");
+    function onDrop(event, dropLoc) {
+        let srcIndex = event.dataTransfer.getData("id");
+        props.movePieceHandler(srcIndex, props.index)
     }
 
     return (
@@ -34,7 +35,7 @@ function Square(props) {
                 onDrop={(e) => onDrop(e, "dest")}
             style={{backgroundColor: generateShade(props.index)}}>
             <div onDragStart={(e) => onDragStart(e, props.index)} draggable>
-                {props.piece.type}
+                <img src={props.piece.img}/>
             </div>
         </button>
     )
