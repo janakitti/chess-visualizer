@@ -1,4 +1,5 @@
 import React from "react"
+import './Board.css';
 
 import Square from "./Square"
 import initBoard from "./initBoard"
@@ -13,7 +14,7 @@ class Board extends React.Component {
     }
 
     renderSquare(i) {
-        return <Square key={i} piece={this.state.grid[i].val} />
+        return <Square key={i} index={i} piece={this.state.grid[i]} />
     }
 
     analyze(pos, piece, grid) {
@@ -78,7 +79,7 @@ class Board extends React.Component {
                 [{x:1, y:-valMult, v:1*valMult}],
             ]
         }
-        
+
         vals = vals.map(path => {
             let withinBoard = path.filter(val =>
                 ((pos % 8) + val.x >= 0 && (pos % 8) + val.x <= 7) &&
