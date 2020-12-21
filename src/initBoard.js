@@ -10,10 +10,10 @@ function initBoard() {
     for(let i = 16; i < 48; i++){
         initGrid[i] = {type: "e", player: "", wVal: 0, bVal: 0, img:""};
     }
-    initGrid[0] = {type: "r", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg"};
-    initGrid[7] = {type: "r", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg"};
-    initGrid[56] = {type: "r", player: "w", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg"};
-    initGrid[63] = {type: "r", player: "w", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg"};
+    initGrid[0] = {type: "ri", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg"};
+    initGrid[7] = {type: "ri", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg"};
+    initGrid[56] = {type: "ri", player: "w", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg"};
+    initGrid[63] = {type: "ri", player: "w", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg"};
   
     initGrid[1] = {type: "n", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg"};
     initGrid[6] = {type: "n", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg"};
@@ -26,10 +26,10 @@ function initBoard() {
     initGrid[61] = {type: "b", player: "w", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg"};
   
     initGrid[3] = {type: "q", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_qdt45.svg"};
-    initGrid[4] = {type: "k", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_kdt45.svg"};
+    initGrid[4] = {type: "ki", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_kdt45.svg"};
   
     initGrid[59] = {type: "q", player: "w", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg"};
-    initGrid[60] = {type: "k", player: "w", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg"};
+    initGrid[60] = {type: "ki", player: "w", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg"};
 
     // initGrid[19] = {type: "p", player: "b", val: 0};
     // initGrid[11] = {type: "e", player: "", val: 0};

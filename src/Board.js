@@ -43,6 +43,32 @@ class Board extends React.Component {
                     }
                     newGrid[destPos] = JSON.parse(JSON.stringify(newGrid[srcPos]));
                     newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                } else if (newGrid[srcPos].type === "ki") {
+                    if (destPos === 2 && newGrid[0].type === "ri") {
+                        newGrid[2] = {...newGrid[srcPos], type: "k"}
+                        newGrid[3] = {...newGrid[0], type:"r"};
+                        newGrid[0] = {type: "e", player: "", wVal: 0, bVal: 0};
+                        newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                    } else if (destPos === 6 && newGrid[7].type === "ri") {
+                        newGrid[6] = {...newGrid[srcPos], type: "k"}
+                        newGrid[5] = {...newGrid[7], type:"r"};
+                        newGrid[7] = {type: "e", player: "", wVal: 0, bVal: 0};
+                        newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                    } else if (destPos === 62 && newGrid[63].type === "ri") {
+                        newGrid[62] = {...newGrid[srcPos], type: "k"}
+                        newGrid[61] = {...newGrid[63], type:"r"};
+                        newGrid[63] = {type: "e", player: "", wVal: 0, bVal: 0};
+                        newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                    } else if (destPos === 58 && newGrid[56].type === "ri") {
+                        newGrid[58] = {...newGrid[srcPos], type: "k"}
+                        newGrid[59] = {...newGrid[56], type:"r"};
+                        newGrid[56] = {type: "e", player: "", wVal: 0, bVal: 0};
+                        newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                    } else {
+                        newGrid[destPos] = {...newGrid[srcPos], type: "k"};
+                        newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                    }
+
                 } else {
                     newGrid[destPos] = JSON.parse(JSON.stringify(newGrid[srcPos]));
                     newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
@@ -75,7 +101,7 @@ class Board extends React.Component {
                 [{x:2, y:-1, v:1*valMult}]
             ]
             moves = vals;
-        } else if (piece.type === "r") {
+        } else if (piece.type === "ri" || piece.type === "r") {
             let paths = [[],[],[],[]]
             for(let i=1; i<=7; i++) {
                 paths[0].push({x:0, y:-i, v:1*valMult})
@@ -109,7 +135,7 @@ class Board extends React.Component {
             }
             vals = paths;
             moves = vals;
-        } else if (piece.type === "k") {
+        } else if (piece.type === "ki" || piece.type === "k") {
             vals = [
                 [{x:0, y:-1, v:1*valMult}],
                 [{x:1, y:-1, v:1*valMult}],
@@ -120,7 +146,20 @@ class Board extends React.Component {
                 [{x:-1, y:0, v:1*valMult}],
                 [{x:-1, y:-1, v:1*valMult}],
             ]
-            moves = vals;
+            if (piece.type === "ki") {
+                moves = [
+                    [{x:0, y:-1, v:1*valMult}],
+                    [{x:1, y:-1, v:1*valMult}],
+                    [{x:1, y:0, v:1*valMult}, {x:2, y:0, v:1*valMult}],
+                    [{x:1, y:1, v:1*valMult}],
+                    [{x:0, y:1, v:1*valMult}],
+                    [{x:-1, y:1, v:1*valMult}],
+                    [{x:-1, y:0, v:1*valMult}, {x:-2, y:0, v:1*valMult}],
+                    [{x:-1, y:-1, v:1*valMult}],
+                ]
+            } else {
+                moves = vals;
+            }
         } else if (piece.type === "pi" || piece.type === "pe" || piece.type === "p") {
             const dir = valMult > 0 ? -1 : 1;
             vals = [
