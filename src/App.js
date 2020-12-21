@@ -14,12 +14,16 @@ class App extends React.Component {
   render() {
     return (
       <div className="app-body">
-        <h1>Visualizer</h1>
-        <br/>
-        <div>
+      <div className="header">
+          <div>
+              <h1 className="title">Chess Visualizer</h1>
+              <h3 className="subtitle">Piece Path Visualizer</h3>
+          </div>
+      </div>
+
+        <div className="board-container">
           <Board />
         </div>
-
       </div>
     )
   }
