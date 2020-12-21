@@ -41,16 +41,16 @@ class Board extends React.Component {
         let moves = []
         const valMult = piece.player === "w" ? 1 : -1
         if (piece.type === "n") {
-            vals = [[
-                {x:-1, y:2, v:1*valMult},
-                {x:1, y:2, v:1*valMult},
-                {x:-1, y:-2, v:1*valMult},
-                {x:1, y:-2, v:1*valMult},
-                {x:-2, y:1, v:1*valMult},
-                {x:2, y:1, v:1*valMult},
-                {x:-2, y:-1, v:1*valMult},
-                {x:2, y:-1, v:1*valMult}
-            ]]
+            vals = [
+                [{x:-1, y:2, v:1*valMult}],
+                [{x:1, y:2, v:1*valMult}],
+                [{x:-1, y:-2, v:1*valMult}],
+                [{x:1, y:-2, v:1*valMult}],
+                [{x:-2, y:1, v:1*valMult}],
+                [{x:2, y:1, v:1*valMult}],
+                [{x:-2, y:-1, v:1*valMult}],
+                [{x:2, y:-1, v:1*valMult}]
+            ]
             moves = vals;
         } else if (piece.type === "r") {
             let paths = [[],[],[],[]]
@@ -182,7 +182,6 @@ class Board extends React.Component {
         return (
             <div className="board">
                 {displayBoard}
-                <button onClick={this.refreshBoard}>Refresh</button>
             </div>
         )
     }

@@ -15,7 +15,11 @@ class App extends React.Component {
     return (
       <div className="app-body">
         <h1>Visualizer</h1>
-        <Board />
+        <br/>
+        <div>
+          <Board />
+        </div>
+
       </div>
     )
   }
