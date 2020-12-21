@@ -23,8 +23,7 @@ class Board extends React.Component {
             this.setState(prevState => {
                 let newGrid = JSON.parse(JSON.stringify(prevState.grid));
                 newGrid[destPos] = JSON.parse(JSON.stringify(newGrid[srcPos]));
-                console.log(`D: ${destPos} becomes ${newGrid[srcPos].type}`)
-                newGrid[srcPos] = {type: "e", player: "", val: 0};
+                newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
 
                 return {grid: newGrid};
             })
@@ -146,7 +145,12 @@ class Board extends React.Component {
         vals = vals.map(path => this.getLegalMoves(path, pos, grid)).flat();
 
         vals.forEach(v => {
-            grid[pos + v.x + 8*v.y].val = grid[pos + v.x + 8*v.y].val + (v.v)
+            if(v.v > 0) {
+                grid[pos + v.x + 8*v.y].wVal = grid[pos + v.x + 8*v.y].wVal + (v.v)
+            } else {
+                grid[pos + v.x + 8*v.y].bVal = grid[pos + v.x + 8*v.y].bVal - (v.v)
+            }
+
         })
 
         return grid
@@ -157,7 +161,8 @@ class Board extends React.Component {
             let newGrid = JSON.parse(JSON.stringify(prevState.grid));
             for(let i = 0; i < 8; i++) {
                 for(let j = 0; j < 8; j++) {
-                    newGrid[i + 8*j].val = 0;
+                    newGrid[i + 8*j].wVal = 0;
+                    newGrid[i + 8*j].bVal = 0;
                 }
             }
             for(let i = 0; i < 8; i++) {
