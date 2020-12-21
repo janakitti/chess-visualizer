@@ -25,10 +25,8 @@ class Board extends React.Component {
                 if (newGrid[srcPos].type === "pi" && (Math.floor(destPos / 8) === 3 || Math.floor(destPos / 8) === 4)) {
                     newGrid[destPos] = JSON.parse(JSON.stringify({...newGrid[srcPos], type: "pe0"}));
                     if (newGrid[srcPos].player === "w") {
-
                         newGrid[srcPos-8] = {type: "ep", player: "w", wVal: 0, bVal: 0};
                     } else if (newGrid[srcPos].player === "b") {
-                        console.log("HELLO" + srcPos+8)
                         newGrid[srcPos+8] = {type: "ep", player: "b", wVal: 0, bVal: 0};
                     }
                     newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
@@ -160,7 +158,7 @@ class Board extends React.Component {
             } else {
                 moves = vals;
             }
-        } else if (piece.type === "pi" || piece.type === "pe" || piece.type === "p") {
+        } else if (piece.type === "pi" || piece.type === "pe" || piece.type === "pe0" || piece.type === "p") {
             const dir = valMult > 0 ? -1 : 1;
             vals = [
                 [{x:-1, y:dir, v:1*valMult}],
