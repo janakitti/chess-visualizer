@@ -4,8 +4,8 @@ function initBoard() {
 
     let initGrid = Array(64).fill({type: "e", player: "", wVal: 0, bVal: 0, img:""});
     for(let i = 8; i < 16; i++){
-        initGrid[i] = {type: "p", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg"};
-        initGrid[i+40] = {type: "p", player: "w", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg"};
+        initGrid[i] = {type: "pi", player: "b", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg"};
+        initGrid[i+40] = {type: "pi", player: "w", wVal: 0, bVal: 0, img:"https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg"};
     }
     for(let i = 16; i < 48; i++){
         initGrid[i] = {type: "e", player: "", wVal: 0, bVal: 0, img:""};
