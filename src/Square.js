@@ -31,13 +31,13 @@ function Square(props) {
     }
 
     return (
-        <button className="square" onDragOver={(e) => onDragOver(e, props.index)}
+        <div className="square" onDragOver={(e) => onDragOver(e, props.index)}
                 onDrop={(e) => onDrop(e, "dest")}
             style={{backgroundColor: generateShade(props.index)}}>
-            <div onDragStart={(e) => onDragStart(e, props.index)} draggable>
-                <img src={props.piece.img}/>
+            <div className="piece-container" onDragStart={(e) => onDragStart(e, props.index)} draggable>
+                <img className="piece-img" hidden={props.piece.img === ""} src={props.piece.img}/>
             </div>
-        </button>
+        </div>
     )
 }
 

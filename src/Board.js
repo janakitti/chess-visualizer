@@ -180,7 +180,7 @@ class Board extends React.Component {
             displayBoard.push(<div key={i} className="board-row">{displayRow}</div>)
         }
         return (
-            <div>
+            <div className="board">
                 {displayBoard}
                 <button onClick={this.refreshBoard}>Refresh</button>
             </div>

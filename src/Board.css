@@ -1,12 +1,32 @@
 .square {
+    overflow: hidden;
     border: none;
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 1em;
-    height: 3em;
-    width: 3em;
+    height: 4em;
+    width: 4em;
     cursor: pointer;
 }
 
+.board-row {
+    height: 4em;
+}
+
+.board {
+}
+
+.piece-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.piece-img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
