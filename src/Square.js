@@ -25,7 +25,7 @@ function Square(props) {
 
     function onDrop(event, dropLoc) {
         let srcIndex = event.dataTransfer.getData("id");
-        props.movePieceHandler(srcIndex, props.index)
+        props.movePieceHandler(parseInt(srcIndex), parseInt(props.index))
     }
 
     return (
@@ -34,6 +34,7 @@ function Square(props) {
             style={{backgroundColor: generateShade(props.index)}}>
             <div className="piece-container" onDragStart={(e) => onDragStart(e, props.index)} draggable>
                 <img className="piece-img" hidden={props.piece.img === ""} src={props.piece.img}/>
+                {/*{props.piece.type}, {props.piece.player}*/}
             </div>
         </div>
     )

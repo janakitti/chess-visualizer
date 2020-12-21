@@ -22,8 +22,32 @@ class Board extends React.Component {
         if(this.getMoves(parseInt(srcPos)).includes(destPos)) {
             this.setState(prevState => {
                 let newGrid = JSON.parse(JSON.stringify(prevState.grid));
-                newGrid[destPos] = JSON.parse(JSON.stringify(newGrid[srcPos]));
-                newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                if (newGrid[srcPos].type === "pi" && (Math.floor(destPos / 8) === 3 || Math.floor(destPos / 8) === 4)) {
+                    newGrid[destPos] = JSON.parse(JSON.stringify({...newGrid[srcPos], type: "pe0"}));
+                    if (newGrid[srcPos].player === "w") {
+
+                        newGrid[srcPos-8] = {type: "ep", player: "w", wVal: 0, bVal: 0};
+                    } else if (newGrid[srcPos].player === "b") {
+                        console.log("HELLO" + srcPos+8)
+                        newGrid[srcPos+8] = {type: "ep", player: "b", wVal: 0, bVal: 0};
+                    }
+                    newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                } else if (newGrid[srcPos].type === "pi" && !(Math.floor(destPos / 8) === 1 || Math.floor(destPos / 8) === 6)) {
+                    newGrid[destPos] = JSON.parse(JSON.stringify({...newGrid[srcPos], type: "p"}));
+                    newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                } else if ((Math.floor(destPos / 8) === 2 || Math.floor(destPos / 8) === 5) && newGrid[destPos].type === "e" && newGrid[destPos].player !== "") {
+                    if (newGrid[destPos].player === "w") {
+                        newGrid[destPos-8] = {type: "e", player: "", wVal: 0, bVal: 0};
+                    } else if (newGrid[destPos].player === "b") {
+                        newGrid[destPos+8] = {type: "e", player: "", wVal: 0, bVal: 0};
+                    }
+                    newGrid[destPos] = JSON.parse(JSON.stringify(newGrid[srcPos]));
+                    newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                } else {
+                    newGrid[destPos] = JSON.parse(JSON.stringify(newGrid[srcPos]));
+                    newGrid[srcPos] = {type: "e", player: "", wVal: 0, bVal: 0};
+                }
+
 
                 return {grid: newGrid};
             })
@@ -109,7 +133,7 @@ class Board extends React.Component {
                     [{x:-1, y:dir, v:1*valMult}],
                     [{x:1, y:dir, v:1*valMult}],
                 ]
-            } else if (piece.type === "pe") {
+            } else if (piece.type === "pe" || piece.type === "p") {
                 moves = [
                     [{x:0, y:dir, v:1*valMult}],
                     [{x:-1, y:dir, v:1*valMult}],
@@ -188,6 +212,18 @@ class Board extends React.Component {
             for(let i = 0; i < 8; i++) {
                 for(let j = 0; j < 8; j++) {
                     newGrid = this.analyze(8*i + j, newGrid[8*i + j], newGrid);
+
+                    if (newGrid[8*i + j].type === "pe0") {
+                        newGrid[8*i + j] = JSON.parse(JSON.stringify({...newGrid[8*i + j], type: "pe"}));
+                    } else if (newGrid[8*i + j].type === "pe") {
+                        newGrid[8*i + j] = JSON.parse(JSON.stringify({...newGrid[8*i + j], type: "p"}));
+                    }
+
+                    if (newGrid[8*i + j].type === "ep" && newGrid[8*i + j].player !== "") {
+                        newGrid[8*i + j] = JSON.parse(JSON.stringify({...newGrid[8*i + j], type: "e"}));
+                    } else if (newGrid[8*i + j].type === "e" && newGrid[8*i + j].player !== "") {
+                        newGrid[8*i + j] = JSON.parse(JSON.stringify({...newGrid[8*i + j], player: ""}));
+                    }
                 }
             }
             return {grid: newGrid}
