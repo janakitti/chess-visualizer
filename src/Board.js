@@ -252,12 +252,14 @@ class Board extends React.Component {
 
                     if (newGrid[8*i + j].type === "pe0") {
                         newGrid[8*i + j] = JSON.parse(JSON.stringify({...newGrid[8*i + j], type: "pe"}));
+                        this.refreshBoard()
                     } else if (newGrid[8*i + j].type === "pe") {
                         newGrid[8*i + j] = JSON.parse(JSON.stringify({...newGrid[8*i + j], type: "p"}));
                     }
 
                     if (newGrid[8*i + j].type === "ep" && newGrid[8*i + j].player !== "") {
                         newGrid[8*i + j] = JSON.parse(JSON.stringify({...newGrid[8*i + j], type: "e"}));
+                        this.refreshBoard()
                     } else if (newGrid[8*i + j].type === "e" && newGrid[8*i + j].player !== "") {
                         newGrid[8*i + j] = JSON.parse(JSON.stringify({...newGrid[8*i + j], player: ""}));
                     }
