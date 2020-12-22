@@ -6,7 +6,7 @@ function Square(props) {
         const shadeFactor = 2;
         let squareColor = {r:50, g:50, b:50, a:1}
         if(wVal > 0 || bVal > 0) {
-            squareColor = {r:wVal > 0 ? 200 : 50, g:50, b:bVal > 0 ? 200 : 50, a:(wVal + bVal) * shadeFactor/10};
+            squareColor = {r:wVal > 0 ? 200 : 50, g:50, b:bVal > 0 ? 200 : 50, a:(wVal + bVal) * shadeFactor/20};
         } else {
             squareColor = ((index % 2 === 0 && (Math.floor(index / 8) % 2) === 0) ||
                 (index % 2 === 1 && ((Math.floor(index / 8) % 2) === 1))) ? {r:202, g:212, b:219, a:1} : {r:171, g:180, b:186, a:1}
@@ -34,7 +34,7 @@ function Square(props) {
             style={{backgroundColor: generateShade(props.index)}}>
             <div className="piece-container" onDragStart={(e) => onDragStart(e, props.index)} draggable>
                 <img className="piece-img" hidden={props.piece.img === ""} src={props.piece.img}/>
-                {/*{props.piece.type}, {props.piece.player}*/}
+                {/*{props.piece.type}, {props.piece.player}, {props.piece.wVal}, {props.piece.bVal}*/}
             </div>
         </div>
     )
