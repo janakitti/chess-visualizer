@@ -1,6 +1,6 @@
 .square {
     overflow: hidden;
-    border: none;
+    border: 0.05em solid #727272;
     color: white;
     text-align: center;
     text-decoration: none;
